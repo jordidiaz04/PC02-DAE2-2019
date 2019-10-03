@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Desarrollo de Aplicaciones Empresariales II</title>
+</head>
+<body>
+<div class="container">
+    <h3>Mantenimiento de Autores</h3>
+    <br>
+    <a th:href="@{/authors/add}" class="btn btn-success pull-right">Nuevo</a>
+    <div class="row" th:switch="authors">
+        <div class="table-responsive" th:case="*">
+            <table class="table table-bordered table-hover table-sm">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="text-center">Dni</th>
+                        <th class="text-center">Nombres</th>
+                        <th class="text-center">Apellido Paterno</th>
+                        <th class="text-center">Apellido Materno</th>
+                        <th class="text-center">Edad</th>
+                        <th class="text-center">Biografia</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="author : ${authors}">
+                        <th th:text="${author.dni}"></th>
+                        <td th:text="${author.firstName}"></td>
+                        <td th:text="${author.lastNameFather}"></td>
+                        <td th:text="${author.lastNameMother}"></td>
+                        <td th:text="${author.age}"></td>
+                        <td th:text="${author.biography}"></td>
+                        <td>
+                            <div class="btn-group">
+                                <a th:href="@{/authors/edit/{dni}(dni = ${author.dni})}" class="btn btn-primary btn-sm mr-3">Editar</a>
+                                <a th:href="@{/authors/delete/{dni}(dni = ${author.dni})}" class="btn btn-danger btn-sm">Eliminar</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
